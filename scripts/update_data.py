@@ -307,6 +307,18 @@ async def main():
     x_rows, v_rows = await fetcher.fetch_all(bootstrap=bootstrap)
 
     incoming_x = aggregate_xsmn_rows(x_rows)
+    existing_total = (
+        len(history.get('xsmn', []))
+        + len(history.get('vietlott', {}).get('mega645', []))
+        + len(history.get('vietlott', {}).get('power655', []))
+    )
+    fetched_total = len(incoming_x) + len(v_rows['mega645']) + len(v_rows['power655'])
+    if existing_total == 0 and fetched_total == 0:
+        raise RuntimeError(
+            'Không lấy được dữ liệu nào ở lần chạy đầu. Kiểm tra log HTTP/nguồn dữ liệu rồi chạy lại; '
+            'workflow sẽ không deploy dashboard rỗng.'
+        )
+
     history['xsmn'] = merge_xsmn(history.get('xsmn', []), incoming_x)
     history.setdefault('vietlott', {})
     for product in ('mega645', 'power655'):

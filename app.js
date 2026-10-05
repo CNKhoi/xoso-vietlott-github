@@ -20,9 +20,10 @@ function renderStatus(){
   const g=DATA.generated_at ? new Date(DATA.generated_at) : null;
   $('#lastUpdate').textContent='Cập nhật: '+(g?g.toLocaleString('vi-VN',{timeZone:'Asia/Ho_Chi_Minh'}):'—');
   const p=$('#statusPill');
-  const stale=!g || (Date.now()-g.getTime())>36*3600*1000;
-  p.className='status-pill '+(stale?'':'ok');
-  p.querySelector('span:last-child').textContent=stale?'Dữ liệu có thể đang cũ':'Tự động đã cập nhật';
+  const notRun=!g || DATA.fetch?.mode==='not-run';
+  const stale=!notRun && (Date.now()-g.getTime())>36*3600*1000;
+  p.className='status-pill '+(!notRun && !stale?'ok':'');
+  p.querySelector('span:last-child').textContent=notRun?'CHƯA CHẠY AUTO UPDATE':(stale?'Dữ liệu có thể đang cũ':'Tự động đã cập nhật');
   if(DATA.fetch?.errors_count) p.title=`Có ${DATA.fetch.errors_count} request nguồn bị lỗi; dữ liệu cũ vẫn được giữ.`;
 }
 

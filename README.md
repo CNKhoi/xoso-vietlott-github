@@ -88,3 +88,19 @@ python scripts/update_data.py
 ## Lưu ý thống kê
 
 Điểm lịch sử/backtest không phải xác suất chắc chắn trúng. Nếu quá trình quay độc lập và công bằng, kết quả cũ không làm một tổ hợp cụ thể có xác suất toán học cao hơn ở kỳ kế tiếp.
+
+## Nếu web hiện toàn dấu — / Cập nhật: —
+
+Điều đó có nghĩa `data/dashboard.json` vẫn là bản khởi tạo (`generated_at: null`, `fetch.mode: not-run`).
+
+Bản FIX AUTO DEPLOY này đã sửa luồng triển khai: `Deploy Web` nghe sự kiện `workflow_run` của `Auto Update Lottery Data`, nên sau khi cập nhật dữ liệu thành công nó sẽ tự deploy lại GitHub Pages và Hugging Face. Không phụ thuộc vào push do `GITHUB_TOKEN` tạo ra.
+
+Khôi phục nhanh:
+
+1. Actions → **Auto Update Lottery Data** → **Run workflow**.
+2. Chờ workflow xanh hoàn toàn.
+3. Mở `data/dashboard.json` và kiểm tra `generated_at` đã có thời gian, `fetch.mode` là `bootstrap` hoặc `incremental`.
+4. Sau khi Auto Update hoàn tất, workflow **Deploy Web** sẽ tự chạy.
+5. Chờ cả job `pages` và `huggingface` xanh rồi Ctrl+F5 trang web.
+
+Nếu Auto Update đỏ, mở step **Update results and analytics** và xem lỗi; bản này sẽ cố ý fail thay vì deploy một dashboard rỗng nếu lần chạy đầu không lấy được bất kỳ dữ liệu nào.
