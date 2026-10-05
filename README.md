@@ -1,0 +1,90 @@
+# Xổ số & Vietlott Analytics Auto — GitHub
+
+Đây là **gói dành riêng cho GitHub**. GitHub chịu trách nhiệm:
+
+1. Tự lấy dữ liệu kết quả XSMN/Vietlott theo lịch.
+2. Merge dữ liệu vào `data/history.json`.
+3. Chạy phân tích + walk-forward backtest.
+4. Sinh `data/dashboard.json`.
+5. Tự deploy GitHub Pages.
+6. Nếu cấu hình Hugging Face, tự đẩy **chỉ các file web cần thiết** sang Hugging Face Space.
+
+## Cài đặt GitHub
+
+### 1) Tạo repository
+Tạo repository mới và upload **toàn bộ nội dung của thư mục này** vào nhánh `main`.
+
+### 2) Bật GitHub Pages
+Vào:
+
+`Settings → Pages → Build and deployment → Source → GitHub Actions`
+
+### 3) Cho phép workflow ghi dữ liệu
+Nếu workflow không commit được, vào:
+
+`Settings → Actions → General → Workflow permissions`
+
+chọn **Read and write permissions**.
+
+### 4) Chạy lần đầu
+Vào:
+
+`Actions → Auto Update Lottery Data → Run workflow`
+
+Lần đầu pipeline bootstrap tối đa khoảng **730 ngày**. Các lần sau chỉ quét cửa sổ gần đây để bù dữ liệu thiếu.
+
+## Lịch tự động
+
+Workflow `Auto Update Lottery Data` chạy mỗi ngày theo `Asia/Ho_Chi_Minh`:
+
+- 17:17 — cập nhật sau XSMN.
+- 18:47 — cập nhật sau Vietlott.
+
+Sau khi dữ liệu thay đổi, GitHub Actions tự commit `data/history.json` và `data/dashboard.json` về `main`.
+
+## Tự đồng bộ sang Hugging Face
+
+Sau khi đã tạo Hugging Face Static Space, trong GitHub vào:
+
+`Settings → Secrets and variables → Actions`
+
+Tạo:
+
+- **Variable** `HF_SPACE_ID` = `TEN_TAI_KHOAN_HF/TEN_SPACE`
+- **Secret** `HF_TOKEN` = access token Hugging Face có quyền ghi vào Space.
+
+Workflow `Deploy Web` sẽ đóng gói đúng các file web tĩnh rồi upload sang Hugging Face. Bạn không cần copy dữ liệu thủ công mỗi ngày.
+
+> File ZIP Hugging Face đi kèm là gói khởi tạo riêng để bạn upload Space lần đầu. Sau đó GitHub có thể tự đồng bộ tiếp.
+
+## Logic XSMN
+
+- Học riêng từng đài/tỉnh.
+- Mô hình vị trí 6 chữ số có trọng số thời gian.
+- Transition theo chữ số cùng vị trí từ kỳ trước.
+- G1–G8 tạo thêm tín hiệu đuôi 2/3 số.
+- Thư viện công thức biến đổi từ kỳ liền trước.
+- Mọi công thức đều được đánh giá bằng **walk-forward backtest**: tại kỳ `t`, chỉ dùng dữ liệu `< t`.
+- Có case audit Bình Thuận: `24/09/2026 ĐB 377346 → 24 + 7346 = 247346`, sau đó mới đối chiếu kỳ `01/10/2026`.
+
+## Logic Vietlott
+
+- Mega 6/45 và Power 6/55 tách riêng.
+- Tần suất có trọng số thời gian và khoảng cách kỳ chưa xuất hiện.
+- Phân tích cặp đồng xuất hiện, chẵn/lẻ, thấp/cao và tổng.
+- Sinh bộ gợi ý bằng weighted sampling có seed cố định để cùng dữ liệu cho cùng kết quả.
+- Có backtest để so với baseline ngẫu nhiên.
+
+## Chạy local
+
+```bash
+pip install -r requirements-update.txt
+python tests/smoke_test.py
+python scripts/update_data.py
+```
+
+`update_data.py` cần Internet để lấy dữ liệu thật.
+
+## Lưu ý thống kê
+
+Điểm lịch sử/backtest không phải xác suất chắc chắn trúng. Nếu quá trình quay độc lập và công bằng, kết quả cũ không làm một tổ hợp cụ thể có xác suất toán học cao hơn ở kỳ kế tiếp.

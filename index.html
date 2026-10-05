@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="XSMN + Vietlott analytics tự động cập nhật bằng GitHub Actions, chạy trên GitHub Pages và Hugging Face Static Spaces.">
+  <meta name="theme-color" content="#080b14">
+  <title>Xổ số & Vietlott Analytics Auto</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <div class="bg-orb orb-a"></div><div class="bg-orb orb-b"></div>
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo">XS</div>
+      <div><h1>Xổ số Analytics Auto</h1><p>XSMN + Vietlott · GitHub Actions · Hugging Face</p></div>
+    </div>
+    <div class="status-pill" id="statusPill"><span class="dot"></span><span>Đang tải dữ liệu…</span></div>
+  </header>
+
+  <main class="wrap">
+    <section class="hero card">
+      <div>
+        <div class="eyebrow">TỰ ĐỘNG HẰNG NGÀY</div>
+        <h2>Phân tích dữ liệu trước kỳ quay, có backtest và không “nhìn trước” kết quả</h2>
+        <p>GitHub Actions tự lấy kết quả mới, lưu lịch sử vào repo, chạy lại mô hình rồi GitHub Pages và Hugging Face nhận bản cập nhật. Điểm số bên dưới là <b>điểm xếp hạng thống kê</b>, không phải tỷ lệ chắc chắn trúng.</p>
+      </div>
+      <div class="hero-stats">
+        <div><span id="latestXsmn">—</span><small>XSMN mới nhất</small></div>
+        <div><span id="latestMega">—</span><small>Mega 6/45</small></div>
+        <div><span id="latestPower">—</span><small>Power 6/55</small></div>
+      </div>
+    </section>
+
+    <nav class="tabs card">
+      <button class="tab active" data-tab="xsmn">Xổ số miền Nam</button>
+      <button class="tab" data-tab="viet">Vietlott</button>
+      <div class="last-update" id="lastUpdate">Cập nhật: —</div>
+    </nav>
+
+    <section id="tab-xsmn" class="tab-panel active">
+      <div class="toolbar card">
+        <label>Đài / tỉnh<select id="province"></select></label>
+        <label>Kỳ đang dự đoán<input id="targetDate" type="text" readonly></label>
+        <button class="ghost" id="todayStations">Đài gần nhất hôm nay</button>
+      </div>
+
+      <section class="audit card" id="auditCard">
+        <div class="section-head"><div><span class="eyebrow">KIỂM CHỨNG 247346</span><h3>Bình Thuận 24/09 → 01/10/2026</h3></div><span class="audit-badge" id="auditBadge">—</span></div>
+        <div class="audit-flow">
+          <div><small>ĐB kỳ trước</small><strong id="auditPrev">—</strong></div><span>→</span>
+          <div><small>Công thức</small><strong id="auditCalc">—</strong></div><span>→</span>
+          <div><small>ĐB thực tế</small><strong id="auditActual">—</strong></div>
+        </div>
+        <p class="subtle" id="auditWarning"></p>
+      </section>
+
+      <div id="xsmnEmpty" class="card empty">Đang tải phân tích XSMN…</div>
+      <div id="xsmnContent" class="hidden">
+        <div class="grid two">
+          <section class="card">
+            <div class="section-head"><div><span class="eyebrow">TOP EXACT 6</span><h3>Ứng viên 6 chữ số</h3></div><span class="subtle" id="xHistory"></span></div>
+            <div class="number-grid" id="exactCandidates"></div>
+          </section>
+          <section class="card">
+            <div class="section-head"><div><span class="eyebrow">SIGNAL</span><h3>Đuôi nổi bật</h3></div><span class="subtle">từ toàn bộ giải</span></div>
+            <div class="split">
+              <div><h4>2 số</h4><div class="chips" id="suffix2"></div></div>
+              <div><h4>3 số</h4><div class="chips" id="suffix3"></div></div>
+            </div>
+            <div class="probability-box"><b>Xác suất lý thuyết</b><span>Exact ĐB: 1 / 1.000.000</span><span>Đuôi 2 số: 1 / 100</span></div>
+          </section>
+        </div>
+
+        <section class="card">
+          <div class="section-head"><div><span class="eyebrow">CÔNG THỨC BIẾN ĐỔI</span><h3>Tính từ kỳ liền trước</h3></div><span class="subtle" id="lastSpecial"></span></div>
+          <div class="formula-cards" id="formulaToday"></div>
+        </section>
+
+        <section class="card">
+          <div class="section-head"><div><span class="eyebrow">WALK-FORWARD BACKTEST</span><h3>Công thức đã làm được gì trong quá khứ?</h3></div><span class="subtle">mỗi lần test chỉ dùng dữ liệu trước kỳ đó</span></div>
+          <div class="table-wrap"><table><thead><tr><th>Công thức</th><th>Kỳ test</th><th>Exact</th><th>Đuôi 4</th><th>Đuôi 3</th><th>Đuôi 2</th><th>Khớp vị trí TB</th></tr></thead><tbody id="formulaTable"></tbody></table></div>
+        </section>
+
+        <section class="card">
+          <div class="section-head"><div><span class="eyebrow">LỊCH SỬ GẦN NHẤT</span><h3>Giải đặc biệt cùng đài</h3></div></div>
+          <div class="history-grid" id="xRecent"></div>
+        </section>
+      </div>
+    </section>
+
+    <section id="tab-viet" class="tab-panel">
+      <div class="toolbar card">
+        <label>Sản phẩm<select id="vietProduct"><option value="mega645">Mega 6/45</option><option value="power655">Power 6/55</option></select></label>
+        <label>Kỳ kế tiếp<input id="vietNextDate" type="text" readonly></label>
+      </div>
+      <div id="vietEmpty" class="card empty">Đang tải phân tích Vietlott…</div>
+      <div id="vietContent" class="hidden">
+        <div class="grid three">
+          <section class="card"><span class="eyebrow">HOT</span><h3>Số có điểm cao</h3><div class="ball-grid" id="hotBalls"></div></section>
+          <section class="card"><span class="eyebrow">OVERDUE</span><h3>Lâu chưa xuất hiện</h3><div class="ball-grid" id="overdueBalls"></div></section>
+          <section class="card"><span class="eyebrow">XÁC SUẤT THẬT</span><h3>Jackpot</h3><div class="big-stat" id="jackpotOdds">—</div><p class="subtle" id="jackpotComb"></p></section>
+        </div>
+        <section class="card">
+          <div class="section-head"><div><span class="eyebrow">BỘ GỢI Ý</span><h3>Tổ hợp xếp hạng thống kê</h3></div><span class="subtle" id="vietHistory"></span></div>
+          <div class="sets" id="vietSets"></div>
+        </section>
+        <section class="card">
+          <div class="section-head"><div><span class="eyebrow">BACKTEST</span><h3>Top-12 pool so với kỳ vọng ngẫu nhiên</h3></div></div>
+          <div class="metric-row">
+            <div><span id="modelMatches">—</span><small>Khớp TB mô hình</small></div>
+            <div><span id="randomMatches">—</span><small>Kỳ vọng ngẫu nhiên</small></div>
+            <div><span id="edgeMatches">—</span><small>Chênh lệch</small></div>
+          </div>
+          <p class="warning" id="vietNote"></p>
+        </section>
+        <section class="card">
+          <div class="section-head"><div><span class="eyebrow">LỊCH SỬ GẦN NHẤT</span><h3>Kết quả Vietlott</h3></div></div>
+          <div class="history-grid" id="vietRecent"></div>
+        </section>
+      </div>
+    </section>
+
+    <section class="card footnote">
+      <b>Nguyên tắc:</b> nếu quá trình quay là độc lập và công bằng thì mọi tổ hợp hợp lệ có xác suất lý thuyết như nhau. Web dùng lịch sử để <b>xếp hạng tín hiệu và kiểm tra độ bền</b>, không thể đảm bảo dự đoán trúng.
+    </section>
+  </main>
+
+  <div class="toast" id="toast"></div>
+  <script src="./app.js"></script>
+</body>
+</html>

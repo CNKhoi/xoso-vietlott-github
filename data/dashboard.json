@@ -1,0 +1,28 @@
+{
+  "version": 4,
+  "generated_at": null,
+  "timezone": "Asia/Ho_Chi_Minh",
+  "source": "MinhChinh.com; lịch/quy tắc Vietlott đối chiếu với Vietlott.vn",
+  "fetch": {"mode": "not-run", "pages_ok": 0, "errors_count": 0, "errors": []},
+  "latest": {"xsmn": null, "mega645": null, "power655": null},
+  "today": "2026-10-05",
+  "today_stations": ["TP. HCM", "Đồng Tháp", "Cà Mau"],
+  "xsmn": {"predictions": {}, "province_count": 0},
+  "vietlott": {
+    "mega645": {"error": "Chưa chạy đồng bộ lần đầu.", "draw_count": 0, "next_draw_date": "2026-10-07"},
+    "power655": {"error": "Chưa chạy đồng bộ lần đầu.", "draw_count": 0, "next_draw_date": "2026-10-06"}
+  },
+  "audit_247346": {
+    "available": false,
+    "previous_date": "2026-09-24",
+    "previous_special": "377346",
+    "formula": "Ngày kỳ trước + 4 số cuối ĐB kỳ trước",
+    "calculation": "24 + 7346 = 247346",
+    "predicted": "247346",
+    "actual_date": "2026-10-01",
+    "actual_special": "247346",
+    "exact_match": true,
+    "warning": "Mẫu kiểm chứng sẽ được đối chiếu lại từ nguồn khi workflow chạy lần đầu."
+  },
+  "disclaimer": "Các điểm dự đoán là xếp hạng thống kê/backtest lịch sử, không phải xác suất chắc chắn trúng."
+}
