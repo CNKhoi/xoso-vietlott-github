@@ -23,7 +23,7 @@
       <div>
         <div class="eyebrow">TỰ ĐỘNG HẰNG NGÀY</div>
         <h2>Phân tích dữ liệu trước kỳ quay, có backtest và không “nhìn trước” kết quả</h2>
-        <p>GitHub Actions tự lấy kết quả mới, lưu lịch sử vào repo, chạy lại mô hình rồi GitHub Pages và Hugging Face nhận bản cập nhật. Điểm số bên dưới là <b>điểm xếp hạng thống kê</b>, không phải tỷ lệ chắc chắn trúng.</p>
+        <p>GitHub Actions tự lấy kết quả mới, lưu lịch sử vào repo, chạy lại mô hình rồi GitHub Pages và Hugging Face nhận bản cập nhật. Engine thử nhiều logic trên các kỳ cũ bằng walk-forward, tự chọn trọng số cho kỳ sau. <b>Xác suất mô hình</b> chỉ là ước lượng lịch sử, không phải tỷ lệ chắc chắn trúng.</p>
       </div>
       <div class="hero-stats">
         <div><span id="latestXsmn">—</span><small>XSMN mới nhất</small></div>
@@ -71,6 +71,25 @@
             <div class="probability-box"><b>Xác suất lý thuyết</b><span>Exact ĐB: 1 / 1.000.000</span><span>Đuôi 2 số: 1 / 100</span></div>
           </section>
         </div>
+
+        <section class="card engine-card">
+          <div class="section-head">
+            <div><span class="eyebrow">ENGINE TỰ CHỌN LOGIC</span><h3>Học từ các kỳ trước rồi chọn mô hình cho kỳ kế tiếp</h3></div>
+            <span class="engine-status" id="engineStatus">—</span>
+          </div>
+          <p class="subtle" id="engineBasis">—</p>
+          <div class="metric-row engine-metrics">
+            <div><span id="engineTests">—</span><small>Kỳ holdout tự kiểm tra</small></div>
+            <div><span id="engineDigit">—</span><small>Đúng chữ số Top-1 · random 10%</small></div>
+            <div><span id="engineSuffix10">—</span><small>Đuôi 2 nằm Top-10 · random 10%</small></div>
+            <div><span id="engineExact20">—</span><small>Exact nằm Top-20</small></div>
+          </div>
+          <div class="engine-grid">
+            <div><h4>Mô hình 6 vị trí đang được dùng</h4><div id="engineModels" class="model-list"></div></div>
+            <div><h4>Mô hình đuôi 2 từ kỳ trước</h4><div id="suffixModels" class="model-list"></div></div>
+          </div>
+          <p class="warning engine-note">Trọng số được tính lại sau mỗi kết quả mới bằng walk-forward. Nếu backtest không vượt baseline, web sẽ ghi rõ thay vì giả vờ có lợi thế.</p>
+        </section>
 
         <section class="card">
           <div class="section-head"><div><span class="eyebrow">CÔNG THỨC BIẾN ĐỔI</span><h3>Tính từ kỳ liền trước</h3></div><span class="subtle" id="lastSpecial"></span></div>

@@ -6,7 +6,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'scripts'))
 
 from scraper_base import parse_xsmn_html, parse_vietlott_html
-from analytics import xsmn_analysis
+from analytics import xsmn_analysis, _formula_candidates
 
 xhtml = '''<html><body>
 <span>02/102026</span><b>Thứ sáu</b>
@@ -34,20 +34,36 @@ phtml = '<div>Kết quả QSMT kỳ #1406 ngày 03/10/2026</div><div>07 11 13 16
 p = parse_vietlott_html(phtml, 'power655', 'test')
 assert len(p) == 1 and p[0]['special'] == 41
 
-def mkdraw(dt, db):
+def mkdraw(dt, db, salt=0):
+    # Deterministic but varied supporting prizes for analytics smoke tests.
+    n=int(db[-4:]) + salt
     return {'draw_date':dt,'province':'Bình Thuận','prizes':{
-      '100N':['12'],'200N':['345'],'400N':['1111','2222','3333'],'1TR':['4444'],
-      '3TR':['10001','10002','10003','10004','10005','10006','10007'],
-      '10TR':['11111','22222'],'15TR':['33333'],'30TR':['44444'],'2TỶ':[db]}}
-case=[
-    mkdraw('2026-08-20','123456'), mkdraw('2026-08-27','654321'),
-    mkdraw('2026-09-03','218850'), mkdraw('2026-09-10','206168'),
-    mkdraw('2026-09-17','457729'), mkdraw('2026-09-24','377346')
-]
+      '100N':[f'{n%100:02d}'],'200N':[f'{n%1000:03d}'],'400N':[f'{(n+11)%10000:04d}',f'{(n+22)%10000:04d}',f'{(n+33)%10000:04d}'],'1TR':[f'{(n+44)%10000:04d}'],
+      '3TR':[f'{(n+i*101)%100000:05d}' for i in range(1,8)],
+      '10TR':[f'{(n+808)%100000:05d}',f'{(n+909)%100000:05d}'],'15TR':[f'{(n+1010)%100000:05d}'],'30TR':[f'{(n+1111)%100000:05d}'],'2TỶ':[db]}}
+
+# Direct audit of the user's 24 + 7346 pattern uses only the previous draw.
+prev=mkdraw('2026-09-24','377346')
+assert _formula_candidates(prev,'2026-10-01')['Ngày kỳ trước + 4 số cuối ĐB']=='247346'
+
+# Build enough history to exercise adaptive walk-forward engine.
+from datetime import date,timedelta
+base=date(2026,3,12)
+case=[]
+for i in range(30):
+    dt=(base+timedelta(days=7*i)).isoformat()
+    # pseudo-history with a mild deterministic digit-delta pattern
+    db=''.join(str((i*3+p*2+(i//4))%10) for p in range(6))
+    case.append(mkdraw(dt,db,i))
+# Replace latest draw with the known 24/09 value; target stays unseen.
+case[-1]=mkdraw('2026-09-24','377346',29)
 a=xsmn_analysis(case,'2026-10-01')
+assert a['history_to']=='2026-09-24'
+assert a['engine_version']=='adaptive-walk-forward-v1'
+assert a['adaptive_engine']['position_models']
+assert a['adaptive_engine']['suffix_models']
 key=next(x for x in a['formula_today'] if x['name']=='Ngày kỳ trước + 4 số cuối ĐB')
 assert key['value']=='247346', key
-assert a['history_to']=='2026-09-24'
 
 stub=json.loads((ROOT/'data/dashboard.json').read_text(encoding='utf-8'))
 assert stub['audit_247346']['predicted']=='247346'

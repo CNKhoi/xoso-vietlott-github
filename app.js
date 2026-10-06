@@ -58,8 +58,21 @@ function renderXsmn(){
   $('#targetDate').value=fmtDate(r.next_draw_date||r.target_date);
   $('#xHistory').textContent=`${r.draw_count} kỳ · ${fmtDate(r.history_from)} → ${fmtDate(r.history_to)}`;
   $('#lastSpecial').textContent=`Kỳ gần nhất ${fmtDate(r.last_date)}: ${r.last_special}`;
-  $('#exactCandidates').innerHTML=(r.candidates||[]).map((x,i)=>`<div class="number-card ${i<3?'featured':''}"><strong>${esc(x.value)}</strong><small>Điểm ${Number(x.score||0).toFixed(1)}/100</small>${x.reasons?.length?`<small class="reason">${esc(x.reasons[0])}</small>`:''}<div class="bar" style="width:${Math.min(100,Number(x.score||0))}%"></div></div>`).join('');
-  $('#suffix2').innerHTML=chips(r.top_suffix2); $('#suffix3').innerHTML=chips(r.top_suffix3);
+  $('#exactCandidates').innerHTML=(r.candidates||[]).map((x,i)=>`<div class="number-card ${i<3?'featured':''}"><strong>${esc(x.value)}</strong><small>Điểm xếp hạng ${Number(x.score||0).toFixed(1)}/100</small><small>LR vị trí ×${Number(x.relative_likelihood_vs_uniform||0).toFixed(2)} · P mô hình ${(Number(x.model_probability||0)*100).toFixed(5)}%</small>${x.reasons?.length?`<small class="reason">${esc(x.reasons[0])}</small>`:''}<div class="bar" style="width:${Math.min(100,Number(x.score||0))}%"></div></div>`).join('');
+  $('#suffix2').innerHTML=(r.top_suffix2||[]).map(x=>`<span class="chip">${esc(x.value)}<small>${Number(x.score||0).toFixed(2)}%</small></span>`).join('');
+  $('#suffix3').innerHTML=chips(r.top_suffix3);
+
+  const eng=r.adaptive_engine||{}; const bt=eng.holdout||{};
+  $('#engineStatus').textContent=eng.status||'—';
+  $('#engineStatus').className='engine-status '+((bt.digit_log_skill_vs_uniform||0)>0 && (bt.suffix2_log_skill_vs_uniform||0)>0?'good':'warn');
+  $('#engineBasis').textContent=`Kỳ làm cơ sở: ${fmtDate(r.previous_draw_basis?.draw_date)} · ĐB ${r.previous_draw_basis?.special||'—'}. ${eng.principle||''}`;
+  $('#engineTests').textContent=bt.tests??'—';
+  $('#engineDigit').textContent=bt.tests!=null?`${(Number(bt.digit_top1_rate||0)*100).toFixed(1)}%`:'—';
+  $('#engineSuffix10').textContent=bt.tests!=null?`${(Number(bt.suffix2_top10_rate||0)*100).toFixed(1)}%`:'—';
+  $('#engineExact20').textContent=bt.tests!=null?`${bt.exact_top20_hits||0}/${bt.tests||0}`:'—';
+  const modelRow=m=>`<div class="model-row"><div><b>${esc(m.name)}</b><small>${m.tests} kỳ test · skill ${Number(m.log_skill_vs_uniform||0)>=0?'+':''}${(Number(m.log_skill_vs_uniform||0)*100).toFixed(1)}%</small></div><span>${(Number(m.weight||0)*100).toFixed(1)}%</span></div>`;
+  $('#engineModels').innerHTML=(eng.position_models||[]).map(modelRow).join('');
+  $('#suffixModels').innerHTML=(eng.suffix_models||[]).map(m=>`<div class="model-row"><div><b>${esc(m.name)}</b><small>${m.tests} kỳ test · Top10 ${(Number(m.top10_rate||0)*100).toFixed(1)}%</small></div><span>${(Number(m.weight||0)*100).toFixed(1)}%</span></div>`).join('');
   $('#formulaToday').innerHTML=(r.formula_today||[]).map(x=>`<div class="formula"><b>${esc(x.value)}</b><small>${esc(x.name)}</small><small>Backtest score: ${Number(x.backtest_score||0).toFixed(3)}</small></div>`).join('');
   $('#formulaTable').innerHTML=(r.formulas||[]).map(x=>`<tr><td>${esc(x.name)}</td><td>${x.tests}</td><td>${x.exact} (${pct(x.exact_rate)})</td><td>${x.suffix4} (${pct(x.suffix4_rate)})</td><td>${x.suffix3} (${pct(x.suffix3_rate)})</td><td>${x.suffix2} (${pct(x.suffix2_rate)})</td><td>${Number(x.avg_digit_matches||0).toFixed(2)}/6</td></tr>`).join('');
   $('#xRecent').innerHTML=(r.recent_results||[]).map(x=>`<div class="history-item"><small>${fmtDate(x.draw_date)}</small><strong>${esc(x.special||'—')}</strong>${x.source?`<a class="source-link" target="_blank" rel="noopener" href="${esc(x.source)}">Nguồn ↗</a>`:''}</div>`).join('');

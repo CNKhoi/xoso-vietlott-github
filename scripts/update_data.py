@@ -254,7 +254,7 @@ def build_dashboard(history, fetch_meta):
     for province, draws in sorted(grouped.items()):
         latest = draws[-1]['draw_date'] if draws else None
         target = next_station_draw(province, latest, today)
-        analysis = xsmn_analysis(draws[-180:], target)
+        analysis = xsmn_analysis(draws[-220:], target)
         analysis['province'] = province
         analysis['next_draw_date'] = target
         analysis['recent_results'] = [
@@ -277,7 +277,7 @@ def build_dashboard(history, fetch_meta):
     latest_power = max((d['draw_date'] for d in history['vietlott'].get('power655', [])), default=None)
 
     return {
-        'version': 4,
+        'version': 5,
         'generated_at': now.isoformat(),
         'timezone': 'Asia/Ho_Chi_Minh',
         'source': 'MinhChinh.com; lịch/quy tắc Vietlott đối chiếu với Vietlott.vn',

@@ -104,3 +104,25 @@ Khôi phục nhanh:
 5. Chờ cả job `pages` và `huggingface` xanh rồi Ctrl+F5 trang web.
 
 Nếu Auto Update đỏ, mở step **Update results and analytics** và xem lỗi; bản này sẽ cố ý fail thay vì deploy một dashboard rỗng nếu lần chạy đầu không lấy được bất kỳ dữ liệu nào.
+
+## Engine XSMN Adaptive Walk-Forward V4
+
+Phần XSMN không còn dùng một công thức cố định. Với mỗi đài, hệ thống lấy **kỳ liền trước của đúng đài** làm điểm xuất phát và tự đánh giá nhiều họ mô hình:
+
+- tần suất từng vị trí chữ số với cửa sổ 12/24/52/104 kỳ;
+- transition `chữ số kỳ trước -> chữ số kỳ sau` theo từng vị trí;
+- delta `(kỳ sau - kỳ trước) mod 10` theo từng vị trí;
+- blend của ba họ trên;
+- engine đuôi 2 học delta từ ĐB/G1..G8 (các nhãn giải trong nguồn) của kỳ trước sang đuôi ĐB kỳ sau;
+- thư viện công thức biến đổi có backtest và shrinkage để một lần trúng ngẫu nhiên không chiếm trọng số quá lớn.
+
+### Cách tự chọn logic
+
+1. Mỗi mô hình được walk-forward trên các kỳ quá khứ: ở kỳ `N`, nó chỉ được nhìn `< N`.
+2. Chấm điểm bằng log-loss và hit-rate Top-1/Top-5/Top-10 so với baseline ngẫu nhiên.
+3. Mẫu ít kỳ bị shrink để tránh overfit.
+4. Chỉ các mô hình xếp hạng cao nhất được đưa vào ensemble và được gán trọng số tự động.
+5. Một khối holdout cuối được khóa: việc chọn mô hình chỉ dùng dữ liệu **trước holdout**, rồi mới chấm trên holdout để kiểm tra lợi thế có thật hay không.
+6. Khi có kết quả mới, toàn bộ quá trình trên chạy lại và trọng số có thể đổi.
+
+Các phần trăm `P mô hình` trên giao diện là phân bố do mô hình lịch sử tạo ra, không phải xác suất vật lý/chắc chắn của kỳ quay. Nếu hệ thống quay độc lập và công bằng, xác suất lý thuyết của một số ĐB 6 chữ số cụ thể vẫn là `1/1.000.000`.
