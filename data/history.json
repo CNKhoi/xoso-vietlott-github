@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-10-06T08:28:12.179867+07:00",
+  "updated_at": "2026-10-06T23:54:22.673251+07:00",
   "xsmn": [],
   "vietlott": {
     "mega645": [
@@ -9308,6 +9308,51 @@
       },
       {
         "product": "power655",
+        "draw_id": 1403,
+        "draw_date": "2026-09-26",
+        "numbers": [
+          14,
+          18,
+          21,
+          38,
+          48,
+          52
+        ],
+        "special": 49,
+        "source": "https://www.minhchinh.com/xs-power-655-ket-qua-power-655-ngay-06-10-2026.html"
+      },
+      {
+        "product": "power655",
+        "draw_id": 1404,
+        "draw_date": "2026-09-29",
+        "numbers": [
+          2,
+          4,
+          13,
+          17,
+          35,
+          36
+        ],
+        "special": 11,
+        "source": "https://www.minhchinh.com/xs-power-655-ket-qua-power-655-ngay-06-10-2026.html"
+      },
+      {
+        "product": "power655",
+        "draw_id": 1405,
+        "draw_date": "2026-10-01",
+        "numbers": [
+          4,
+          5,
+          13,
+          34,
+          52,
+          55
+        ],
+        "special": 15,
+        "source": "https://www.minhchinh.com/xs-power-655-ket-qua-power-655-ngay-06-10-2026.html"
+      },
+      {
+        "product": "power655",
         "draw_id": 1406,
         "draw_date": "2026-10-03",
         "numbers": [
@@ -9319,7 +9364,22 @@
           54
         ],
         "special": 41,
-        "source": "https://www.minhchinh.com/truc-tiep-xo-so-tu-chon-power-655.html"
+        "source": "https://www.minhchinh.com/xs-power-655-ket-qua-power-655-ngay-06-10-2026.html"
+      },
+      {
+        "product": "power655",
+        "draw_id": 1407,
+        "draw_date": "2026-10-06",
+        "numbers": [
+          6,
+          7,
+          18,
+          20,
+          24,
+          27
+        ],
+        "special": 1,
+        "source": "https://www.minhchinh.com/xs-power-655-ket-qua-power-655-ngay-06-10-2026.html"
       }
     ]
   }
