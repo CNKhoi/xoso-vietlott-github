@@ -1,16 +1,18 @@
 {
   "version": 5,
-  "generated_at": "2026-10-11T23:23:43.373169+07:00",
+  "generated_at": "2026-10-11T23:52:07.116776+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "source": "MinhChinh.com; lịch/quy tắc Vietlott đối chiếu với Vietlott.vn",
   "fetch": {
     "mode": "bootstrap",
-    "pages_ok": 250,
-    "errors_count": 0,
-    "errors": [],
+    "pages_ok": 249,
+    "errors_count": 1,
+    "errors": [
+      "https://www.minhchinh.com/xs-mega-645-ket-qua-mega-645-ngay-15-12-2024.html: ReadTimeout: "
+    ],
     "new_xsmn_blocks_seen": 0,
     "vietlott_rows_seen": {
-      "mega645": 320,
+      "mega645": 315,
       "power655": 316
     },
     "history_counts": {
