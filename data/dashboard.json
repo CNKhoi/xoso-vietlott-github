@@ -1,19 +1,17 @@
 {
   "version": 5,
-  "generated_at": "2026-10-11T23:52:07.116776+07:00",
+  "generated_at": "2026-10-13T02:57:24.979302+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "source": "MinhChinh.com; lịch/quy tắc Vietlott đối chiếu với Vietlott.vn",
   "fetch": {
     "mode": "bootstrap",
-    "pages_ok": 249,
-    "errors_count": 1,
-    "errors": [
-      "https://www.minhchinh.com/xs-mega-645-ket-qua-mega-645-ngay-15-12-2024.html: ReadTimeout: "
-    ],
+    "pages_ok": 250,
+    "errors_count": 0,
+    "errors": [],
     "new_xsmn_blocks_seen": 0,
     "vietlott_rows_seen": {
-      "mega645": 315,
-      "power655": 316
+      "mega645": 320,
+      "power655": 311
     },
     "history_counts": {
       "xsmn_draws": 0,
@@ -26,11 +24,11 @@
     "mega645": "2026-10-11",
     "power655": "2026-10-10"
   },
-  "today": "2026-10-11",
+  "today": "2026-10-13",
   "today_stations": [
-    "Tiền Giang",
-    "Kiên Giang",
-    "Đà Lạt"
+    "Bến Tre",
+    "Vũng Tàu",
+    "Bạc Liêu"
   ],
   "schedule": {
     "0": [
@@ -600,7 +598,7 @@
           39
         ],
         "special": 30,
-        "source": "https://www.minhchinh.com/xs-power-655-ket-qua-power-655-ngay-10-10-2026.html"
+        "source": "https://www.minhchinh.com/truc-tiep-xo-so-tu-chon-power-655.html"
       },
       "hot": [
         {
@@ -922,7 +920,7 @@
             39
           ],
           "special": 30,
-          "source": "https://www.minhchinh.com/xs-power-655-ket-qua-power-655-ngay-10-10-2026.html"
+          "source": "https://www.minhchinh.com/truc-tiep-xo-so-tu-chon-power-655.html"
         },
         {
           "product": "power655",
@@ -982,7 +980,7 @@
             55
           ],
           "special": 15,
-          "source": "https://www.minhchinh.com/xs-power-655-ket-qua-power-655-ngay-10-10-2026.html"
+          "source": "https://www.minhchinh.com/xs-power-655-ket-qua-power-655-ngay-01-10-2026.html"
         },
         {
           "product": "power655",
@@ -997,7 +995,7 @@
             36
           ],
           "special": 11,
-          "source": "https://www.minhchinh.com/xs-power-655-ket-qua-power-655-ngay-29-09-2026.html"
+          "source": "https://www.minhchinh.com/xs-power-655-ket-qua-power-655-ngay-01-10-2026.html"
         },
         {
           "product": "power655",
@@ -1012,7 +1010,7 @@
             52
           ],
           "special": 49,
-          "source": "https://www.minhchinh.com/xs-power-655-ket-qua-power-655-ngay-29-09-2026.html"
+          "source": "https://www.minhchinh.com/xs-power-655-ket-qua-power-655-ngay-01-10-2026.html"
         },
         {
           "product": "power655",
@@ -1027,7 +1025,7 @@
             28
           ],
           "special": 27,
-          "source": "https://www.minhchinh.com/xs-power-655-ket-qua-power-655-ngay-29-09-2026.html"
+          "source": "https://www.minhchinh.com/xs-power-655-ket-qua-power-655-ngay-01-10-2026.html"
         },
         {
           "product": "power655",
@@ -1042,7 +1040,7 @@
             46
           ],
           "special": 10,
-          "source": "https://www.minhchinh.com/xs-power-655-ket-qua-power-655-ngay-29-09-2026.html"
+          "source": "https://www.minhchinh.com/xs-power-655-ket-qua-power-655-ngay-01-10-2026.html"
         },
         {
           "product": "power655",
@@ -1057,7 +1055,7 @@
             25
           ],
           "special": 50,
-          "source": "https://www.minhchinh.com/xs-power-655-ket-qua-power-655-ngay-29-09-2026.html"
+          "source": "https://www.minhchinh.com/xs-power-655-ket-qua-power-655-ngay-19-09-2026.html"
         },
         {
           "product": "power655",
@@ -1087,7 +1085,7 @@
             47
           ],
           "special": 52,
-          "source": "https://www.minhchinh.com/xs-power-655-ket-qua-power-655-ngay-17-09-2026.html"
+          "source": "https://www.minhchinh.com/xs-power-655-ket-qua-power-655-ngay-19-09-2026.html"
         }
       ]
     }
