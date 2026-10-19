@@ -1,6 +1,6 @@
 {
   "version": 5,
-  "generated_at": "2026-10-18T21:54:25.597382+07:00",
+  "generated_at": "2026-10-20T00:01:45.805836+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "source": "MinhChinh.com; lịch/quy tắc Vietlott đối chiếu với Vietlott.vn",
   "fetch": {
@@ -24,11 +24,11 @@
     "mega645": "2026-10-18",
     "power655": "2026-10-17"
   },
-  "today": "2026-10-18",
+  "today": "2026-10-20",
   "today_stations": [
-    "Tiền Giang",
-    "Kiên Giang",
-    "Đà Lạt"
+    "Bến Tre",
+    "Vũng Tàu",
+    "Bạc Liêu"
   ],
   "schedule": {
     "0": [
