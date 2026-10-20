@@ -1,6 +1,6 @@
 {
   "version": 5,
-  "generated_at": "2026-10-20T00:48:29.446394+07:00",
+  "generated_at": "2026-10-20T22:11:22.807504+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "source": "MinhChinh.com; lịch/quy tắc Vietlott đối chiếu với Vietlott.vn",
   "fetch": {
@@ -11,18 +11,18 @@
     "new_xsmn_blocks_seen": 0,
     "vietlott_rows_seen": {
       "mega645": 320,
-      "power655": 309
+      "power655": 314
     },
     "history_counts": {
       "xsmn_draws": 0,
       "mega645_draws": 320,
-      "power655_draws": 318
+      "power655_draws": 319
     }
   },
   "latest": {
     "xsmn": null,
     "mega645": "2026-10-18",
-    "power655": "2026-10-17"
+    "power655": "2026-10-20"
   },
   "today": "2026-10-20",
   "today_stations": [
@@ -582,171 +582,171 @@
       ]
     },
     "power655": {
-      "draw_count": 318,
+      "draw_count": 319,
       "history_from": "2024-10-03",
-      "history_to": "2026-10-17",
+      "history_to": "2026-10-20",
       "last_draw": {
         "product": "power655",
-        "draw_id": 1412,
-        "draw_date": "2026-10-17",
+        "draw_id": 1413,
+        "draw_date": "2026-10-20",
         "numbers": [
-          1,
-          10,
-          11,
-          12,
-          16,
-          37
+          13,
+          20,
+          23,
+          30,
+          50,
+          55
         ],
-        "special": 48,
-        "source": "https://www.minhchinh.com/truc-tiep-xo-so-tu-chon-power-655.html"
+        "special": 45,
+        "source": "https://www.minhchinh.com/xs-power-655-ket-qua-power-655-ngay-20-10-2026.html"
       },
       "hot": [
         {
           "number": 7,
-          "score": 73.04
+          "score": 74.24
         },
         {
           "number": 11,
-          "score": 70.36
+          "score": 71.43
         },
         {
           "number": 18,
-          "score": 60.86
+          "score": 61.93
         },
         {
           "number": 27,
-          "score": 59.09
-        },
-        {
-          "number": 1,
-          "score": 57.45
-        },
-        {
-          "number": 25,
-          "score": 54.13
-        },
-        {
-          "number": 24,
-          "score": 50.15
-        },
-        {
-          "number": 13,
-          "score": 49.7
-        },
-        {
-          "number": 14,
-          "score": 48.95
-        },
-        {
-          "number": 5,
-          "score": 48.92
-        },
-        {
-          "number": 8,
-          "score": 48.48
+          "score": 59.95
         },
         {
           "number": 23,
-          "score": 46.58
+          "score": 58.15
+        },
+        {
+          "number": 1,
+          "score": 58.15
+        },
+        {
+          "number": 13,
+          "score": 56.03
+        },
+        {
+          "number": 25,
+          "score": 54.79
+        },
+        {
+          "number": 24,
+          "score": 50.8
+        },
+        {
+          "number": 8,
+          "score": 49.82
+        },
+        {
+          "number": 5,
+          "score": 49.74
+        },
+        {
+          "number": 14,
+          "score": 49.51
         }
       ],
       "cold": [
         {
           "number": 6,
-          "score": 11.25
+          "score": 10.88
+        },
+        {
+          "number": 30,
+          "score": 11.3
         },
         {
           "number": 35,
-          "score": 11.57
+          "score": 11.36
         },
         {
           "number": 10,
-          "score": 12.41
+          "score": 11.8
         },
         {
           "number": 37,
-          "score": 12.57
+          "score": 11.97
         },
         {
           "number": 12,
-          "score": 12.72
+          "score": 12.13
         },
         {
           "number": 42,
-          "score": 15.58
-        },
-        {
-          "number": 50,
-          "score": 16.76
+          "score": 15.12
         },
         {
           "number": 34,
-          "score": 18.71
+          "score": 18.66
         },
         {
           "number": 26,
-          "score": 19.46
+          "score": 19.59
         },
         {
           "number": 48,
-          "score": 20.8
+          "score": 20.92
         },
         {
           "number": 36,
-          "score": 20.89
+          "score": 20.96
         },
         {
-          "number": 43,
-          "score": 21.37
+          "number": 51,
+          "score": 21.74
         }
       ],
       "overdue": [
         {
-          "number": 30,
-          "gap_draws": 27
-        },
-        {
           "number": 19,
-          "gap_draws": 24
+          "gap_draws": 25
         },
         {
           "number": 15,
-          "gap_draws": 21
+          "gap_draws": 22
         },
         {
           "number": 29,
-          "gap_draws": 21
+          "gap_draws": 22
         },
         {
           "number": 44,
-          "gap_draws": 20
+          "gap_draws": 21
         },
         {
           "number": 49,
-          "gap_draws": 20
+          "gap_draws": 21
         },
         {
           "number": 33,
-          "gap_draws": 18
+          "gap_draws": 19
         },
         {
           "number": 8,
-          "gap_draws": 17
+          "gap_draws": 18
         },
         {
           "number": 43,
-          "gap_draws": 15
+          "gap_draws": 16
         },
         {
           "number": 32,
-          "gap_draws": 14
+          "gap_draws": 15
         },
         {
           "number": 47,
-          "gap_draws": 14
+          "gap_draws": 15
         },
         {
           "number": 22,
+          "gap_draws": 13
+        },
+        {
+          "number": 3,
           "gap_draws": 12
         }
       ],
@@ -756,9 +756,9 @@
             7,
             11,
             18,
-            38,
-            47,
-            54
+            40,
+            44,
+            55
           ],
           "score": 100.0,
           "sum": 175
@@ -766,134 +766,134 @@
         {
           "numbers": [
             7,
-            11,
             18,
+            23,
+            25,
             40,
-            44,
-            49
+            44
           ],
-          "score": 38.53,
-          "sum": 169
-        },
-        {
-          "numbers": [
-            1,
-            7,
-            18,
-            31,
-            38,
-            52
-          ],
-          "score": 38.18,
-          "sum": 147
+          "score": 73.88,
+          "sum": 157
         },
         {
           "numbers": [
             7,
             11,
+            14,
             18,
-            28,
-            41,
-            47
-          ],
-          "score": 33.25,
-          "sum": 152
-        },
-        {
-          "numbers": [
-            7,
-            18,
-            27,
-            31,
-            40,
-            45
-          ],
-          "score": 32.78,
-          "sum": 168
-        },
-        {
-          "numbers": [
-            7,
-            11,
-            16,
-            24,
-            27,
+            39,
             54
           ],
-          "score": 29.3,
-          "sum": 139
+          "score": 68.71,
+          "sum": 143
         },
         {
           "numbers": [
             7,
             11,
             27,
-            31,
+            38,
             40,
-            44
+            47
           ],
-          "score": 23.27,
-          "sum": 160
+          "score": 67.23,
+          "sum": 170
         },
         {
           "numbers": [
-            1,
+            7,
             11,
             18,
-            31,
-            44,
+            23,
+            25,
             52
           ],
-          "score": 17.84,
-          "sum": 157
+          "score": 65.41,
+          "sum": 136
         },
         {
           "numbers": [
             11,
             18,
+            23,
             25,
+            42,
+            44
+          ],
+          "score": 31.6,
+          "sum": 163
+        },
+        {
+          "numbers": [
+            7,
+            11,
             27,
             33,
-            44
+            38,
+            47
           ],
-          "score": 15.09,
-          "sum": 158
+          "score": 29.26,
+          "sum": 163
+        },
+        {
+          "numbers": [
+            8,
+            11,
+            18,
+            33,
+            47,
+            54
+          ],
+          "score": 23.63,
+          "sum": 171
+        },
+        {
+          "numbers": [
+            7,
+            18,
+            25,
+            28,
+            47,
+            50
+          ],
+          "score": 17.46,
+          "sum": 175
+        },
+        {
+          "numbers": [
+            7,
+            11,
+            23,
+            24,
+            38,
+            52
+          ],
+          "score": 15.01,
+          "sum": 155
         },
         {
           "numbers": [
             7,
             14,
             18,
-            32,
-            41,
-            45
+            28,
+            45,
+            47
           ],
-          "score": 7.57,
-          "sum": 157
+          "score": 8.38,
+          "sum": 159
         },
         {
           "numbers": [
             11,
-            14,
-            25,
-            29,
-            38,
-            44
-          ],
-          "score": 3.65,
-          "sum": 161
-        },
-        {
-          "numbers": [
-            7,
             18,
-            27,
-            38,
-            48,
-            51
+            23,
+            25,
+            40,
+            48
           ],
           "score": 0.0,
-          "sum": 189
+          "sum": 165
         }
       ],
       "theoretical_jackpot_probability": 3.449504004442961e-08,
@@ -905,8 +905,23 @@
         "edge_vs_random": -0.0091
       },
       "note": "Mỗi tổ hợp 6 số hợp lệ vẫn có xác suất lý thuyết bằng nhau nếu kỳ quay độc lập và công bằng.",
-      "next_draw_date": "2026-10-20",
+      "next_draw_date": "2026-10-22",
       "recent_results": [
+        {
+          "product": "power655",
+          "draw_id": 1413,
+          "draw_date": "2026-10-20",
+          "numbers": [
+            13,
+            20,
+            23,
+            30,
+            50,
+            55
+          ],
+          "special": 45,
+          "source": "https://www.minhchinh.com/xs-power-655-ket-qua-power-655-ngay-20-10-2026.html"
+        },
         {
           "product": "power655",
           "draw_id": 1412,
@@ -920,7 +935,7 @@
             37
           ],
           "special": 48,
-          "source": "https://www.minhchinh.com/truc-tiep-xo-so-tu-chon-power-655.html"
+          "source": "https://www.minhchinh.com/xs-power-655-ket-qua-power-655-ngay-20-10-2026.html"
         },
         {
           "product": "power655",
@@ -935,7 +950,7 @@
             51
           ],
           "special": 4,
-          "source": "https://www.minhchinh.com/xs-power-655-ket-qua-power-655-ngay-17-10-2026.html"
+          "source": "https://www.minhchinh.com/xs-power-655-ket-qua-power-655-ngay-20-10-2026.html"
         },
         {
           "product": "power655",
@@ -950,7 +965,7 @@
             53
           ],
           "special": 26,
-          "source": "https://www.minhchinh.com/xs-power-655-ket-qua-power-655-ngay-17-10-2026.html"
+          "source": "https://www.minhchinh.com/xs-power-655-ket-qua-power-655-ngay-20-10-2026.html"
         },
         {
           "product": "power655",
@@ -965,7 +980,7 @@
             39
           ],
           "special": 30,
-          "source": "https://www.minhchinh.com/xs-power-655-ket-qua-power-655-ngay-17-10-2026.html"
+          "source": "https://www.minhchinh.com/xs-power-655-ket-qua-power-655-ngay-20-10-2026.html"
         },
         {
           "product": "power655",
@@ -1070,21 +1085,6 @@
             28
           ],
           "special": 27,
-          "source": "https://www.minhchinh.com/xs-power-655-ket-qua-power-655-ngay-26-09-2026.html"
-        },
-        {
-          "product": "power655",
-          "draw_id": 1401,
-          "draw_date": "2026-09-22",
-          "numbers": [
-            1,
-            3,
-            9,
-            11,
-            41,
-            46
-          ],
-          "special": 10,
           "source": "https://www.minhchinh.com/xs-power-655-ket-qua-power-655-ngay-26-09-2026.html"
         }
       ]
