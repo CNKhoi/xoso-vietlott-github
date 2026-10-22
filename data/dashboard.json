@@ -1,6 +1,6 @@
 {
   "version": 5,
-  "generated_at": "2026-10-22T22:22:16.330670+07:00",
+  "generated_at": "2026-10-22T23:03:58.313322+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "source": "MinhChinh.com; lịch/quy tắc Vietlott đối chiếu với Vietlott.vn",
   "fetch": {
@@ -10,7 +10,7 @@
     "errors": [],
     "new_xsmn_blocks_seen": 0,
     "vietlott_rows_seen": {
-      "mega645": 314,
+      "mega645": 319,
       "power655": 316
     },
     "history_counts": {
